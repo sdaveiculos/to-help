@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">To Help</string>
+    <string name="welcome">Bem Vindo</string>
+    <string name="logout">Logout</string>
+    <string name="etsenha">Senha</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+        <string name="card_incendio">
+        Mantenha sempre à vista o telefone de emergência do Corpo de Bombeiros - 193.
+
+
+        Conserve sempre as caixas de incêndios em perfeita condições de uso e somente as utilize em caso de incêndio.
+
+
+        Os extintores devem estar fixados sempre em locais de fácil acesso, devidamente carregados e revisados.</string>
+
+    <string name="card_enchente">Se estiver em um local fechado, mantenha a calma e tente subir o máximo possível em segurança e espere emergência. Evite nadar ou passar pela água. Caso seja necessário, proteja o corpo para evitar cortes ou máximo possivel de contato com a água..
+
+
+        Se estiver em local aberto, afaste-se o mais rápido possível de encostas de morros, do litoral ou das margens de rios, que podem ceder com desmoronamento. Se estiver em uma cidade, busque um abrigo o mais rápido possível em locais altos e seguros.
+
+        "</string>
+
+
+     <string name="card_acidente">Coloque a sinalização de acordo com a velocidade da via na qual houve o acidente. Exemplo: 80 km/h = 80 metros. Essa ação rápida evita que outro acidente aconteça enquanto você atende a vítima.
+Pegue o seu telefone celular e ligue para a emergência de sua cidade antes de qualquer outra atitude. Dê informações como o tipo de acidente , condições da vítima e possíveis riscos de explosão.
+
+Verificar as condições gerais da vítima;</string>
+
+    <string name="card_deslizamento">
+Durante o Deslizamento, saia de casa se você perceber uma movimentação de terra por perto;
+Procure lugares sem perigo de deslizamentos;
+Encontre a sua família no lugar pré-determinado;
+Informe as autoridades tudo que está acontecendo.
+
+Após do Deslizamento
+Não retorne ao local de deslizamento sem que a Defesa Cívil tenha feito uma avaliação do terreno.
+E não esqueça que antes, durante e depois do Deslizamento de terra é preciso manter sempre a calma.</string>
+</resources>

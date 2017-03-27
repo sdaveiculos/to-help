@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fc3f19"
+    android:padding="@dimen/default_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Insira seus dados"
+            android:id="@+id/textView"
+            android:textSize="30dp"
+            android:textIsSelectable="false"
+            android:textColor="#fff6ed"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/default_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Nome"
+            android:id="@+id/tvNome"
+            android:textColor="#fff6ed"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/cadastroNome"
+            android:textColor="@android:color/background_light"
+            android:password="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="E-mail"
+            android:id="@+id/tvEmail"
+            android:textColor="#fff6ed"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/cadastroEmail"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Senha"
+            android:id="@+id/textView2"
+            android:textColor="#fff6ed"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/cadastroSenha"
+            android:textColor="@android:color/white"
+            android:password="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Sexo"
+            android:id="@+id/textView22222"
+            android:textColor="#fff6ed"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/cadastroSexo"
+            android:textColor="@android:color/background_light" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/btlogin"
+            android:onClick="enviarDados"
+            android:layout_marginTop="@dimen/default_margin" />
+
+</LinearLayout>

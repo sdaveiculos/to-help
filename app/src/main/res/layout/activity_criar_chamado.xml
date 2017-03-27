@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.kevin.tohelp.MainIndex"
+    android:id="@+id/u">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#5b4e47"
+        android:textSize="23dp"
+        android:typeface="serif"
+        android:text="Selecione o tipo de ocorrência" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@drawable/enchente3"
+        android:paddingTop="20dp"
+        android:text="Tempestade"
+        android:textColor="#fff"
+        android:layout_y="49dp"
+        android:layout_x="192dp"
+        android:id="@+id/btEnchente"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:paddingTop="20dp"
+        android:text="Tempestade"
+        android:drawableTop="@drawable/trovao1"
+        android:textColor="#fff"
+        android:layout_y="49dp"
+        android:layout_x="29dp"
+        android:id="@+id/btTempestade" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@drawable/incendio2"
+        android:paddingTop="20dp"
+        android:text="Incêndio"
+        android:textColor="#fff"
+        android:layout_y="196dp"
+        android:layout_x="29dp"
+        android:id="@+id/btIncendio" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@drawable/carro"
+        android:paddingTop="20dp"
+        android:text="Acidente"
+        android:textColor="#fff"
+        android:layout_y="199dp"
+        android:layout_x="192dp"
+        android:id="@+id/btAcidente" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@drawable/deslizamento_terra"
+        android:paddingTop="20dp"
+        android:text="Desmoronamento"
+        android:textColor="#fff"
+        android:layout_y="349dp"
+        android:layout_x="27dp"
+        android:id="@+id/btDesmoronamento" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:background="@drawable/round_button"
+        android:drawableTop="@drawable/desmatamento_1"
+        android:paddingTop="20dp"
+        android:text="Desmatamento"
+        android:textColor="#fff"
+        android:layout_y="346dp"
+        android:layout_x="195dp"
+        android:id="@+id/btDesmatamento"/>
+
+
+</AbsoluteLayout>
