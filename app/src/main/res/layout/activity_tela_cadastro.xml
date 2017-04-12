@@ -1,95 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fc3f19"
-    android:padding="@dimen/default_margin">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.kevin.tohelp.TelaCadastro"
+    android:fitsSystemWindows="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Insira seus dados"
-            android:id="@+id/textView"
-            android:textSize="30dp"
-            android:textIsSelectable="false"
-            android:textColor="#fff6ed"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/default_margin" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nome"
-            android:id="@+id/tvNome"
-            android:textColor="#fff6ed"/>
-
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/cadastroNome"
-            android:textColor="@android:color/background_light"
-            android:password="false" />
+            android:paddingTop="56dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="E-mail"
-            android:id="@+id/tvEmail"
-            android:textColor="#fff6ed"/>
+                <ImageView android:src="@drawable/bbto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="112dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/cadastroEmail"
-            android:textColor="@android:color/background_light" />
+                <!--  Name Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                        <EditText android:id="@+id/cadastroNome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapWords"
+                            android:hint="Name" />
+                </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Senha"
-            android:id="@+id/textView2"
-            android:textColor="#fff6ed"/>
+                <!-- Email Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                        <EditText android:id="@+id/cadastroEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:hint="E-mail" />
+                </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/cadastroSenha"
-            android:textColor="@android:color/white"
-            android:password="true" />
+                <!-- Password Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+                        <EditText android:id="@+id/cadastroSenha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:hint="Senha"/>
+                </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sexo"
-            android:id="@+id/textView22222"
-            android:textColor="#fff6ed"/>
+                <!-- Signup Button -->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:padding="12dp"
+                    android:text="Cadastrar"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/cadastroSexo"
-            android:textColor="@android:color/background_light" />
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OK"
-            android:id="@+id/btlogin"
-            android:onClick="enviarDados"
-            android:layout_marginTop="@dimen/default_margin" />
-
-</LinearLayout>
+        </LinearLayout>
+</ScrollView>

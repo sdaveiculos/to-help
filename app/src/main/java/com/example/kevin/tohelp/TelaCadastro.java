@@ -65,8 +65,7 @@ public class TelaCadastro extends AppCompatActivity {
         fieldNome   = (EditText) findViewById(R.id.cadastroNome);
         fieldEmail  = (EditText) findViewById(R.id.cadastroEmail);
         fieldSenha  = (EditText) findViewById(R.id.cadastroSenha);
-        fieldSexo   = (EditText) findViewById(R.id.cadastroSexo);
-        btnLogin    = (Button) findViewById(R.id.btlogin);
+        btnLogin    = (Button) findViewById(R.id.btn_signup);
     }
 
     //Método que irá enviar os dados inseridos pelo usuário para o servidor
@@ -177,6 +176,8 @@ public class TelaCadastro extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
 
             return null;
@@ -191,7 +192,7 @@ public class TelaCadastro extends AppCompatActivity {
                 JSONObject jsonResponse = new JSONObject(result);
 
                 //Caso o cadastro tenha falhado, exibo um alert dialog
-                if (jsonResponse.getBoolean("status") == false) {
+                if (!jsonResponse.getBoolean("status")) {
                     //Criando alert
                     AlertDialog.Builder builder = new AlertDialog.Builder(TelaCadastro.this);
                     builder.setTitle("Cadastro");
@@ -211,7 +212,9 @@ public class TelaCadastro extends AppCompatActivity {
                     //Salvo o id do usuário logado
                     sessionManager.setStringPreferences(TelaCadastro.this, "idUser", jsonResponse.getJSONObject("data").getString("id"));
 
-                    //TODO devo salvar o nome do usuário e o e-mail dele para exibir no drawer
+                    //Salvar o nome do usuário e o e-mail dele para exibir no drawer
+                    sessionManager.setStringPreferences(TelaCadastro.this, "nomeUser", jsonResponse.getJSONObject("data").getString("nome"));
+                    sessionManager.setStringPreferences(TelaCadastro.this, "emailUser", jsonResponse.getJSONObject("data").getString("email"));
 
                     Intent intent = new Intent(getBaseContext(), MainIndex.class);
                     startActivity(intent);

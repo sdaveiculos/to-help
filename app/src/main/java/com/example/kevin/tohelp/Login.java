@@ -4,12 +4,9 @@ package com.example.kevin.tohelp;
  * Created by kevin on 16/03/2017.
  */
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,7 +75,7 @@ public class Login extends AppCompatActivity {
         senha = fieldSenha.getText().toString();
 
         //Enviando os dados de login para o servidor
-        new JSONTask().execute("http://192.168.0.196/tohelp/website/www/action.php?ah=pessoa/fazerLogin");
+        new JSONTask().execute("http://10.145.251.236/tohelp/website/www/action.php?ah=pessoa/fazerLogin");
 
     }
 
@@ -174,6 +171,8 @@ public class Login extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
 
             return null;
@@ -189,7 +188,7 @@ public class Login extends AppCompatActivity {
 
                 //Caso o login tenha falhado, exibo um alert dialog
                 //FIXME talvez apagar os campos quando o usuário falhar o login ou pelo menos o campo de senha
-                if (jsonResponse.getBoolean("status") == false) {
+                if (!jsonResponse.getBoolean("status")) {
                     //Criando alert
                     AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                     builder.setTitle("Login");
@@ -209,8 +208,9 @@ public class Login extends AppCompatActivity {
                     //Salvo o id do usuário logado
                     sessionManager.setStringPreferences(Login.this, "idUser", jsonResponse.getJSONObject("data").getString("idUser"));
 
-                    //TODO devo salvar o nome do usuário e o e-mail dele para exibir no drawer
-                    //sessionManager.setStringPreferences(Login.this, "nomeUser", jsonResponse.getJSONObject("data").getString(""));
+                    //Salvar o nome do usuário e o e-mail dele para exibir no drawer
+                    sessionManager.setStringPreferences(Login.this, "nomeUser", jsonResponse.getJSONObject("data").getString("nomeUser"));
+                    sessionManager.setStringPreferences(Login.this, "emailUser", jsonResponse.getJSONObject("data").getString("emailUser"));
 
                     //Agora devo mandar o usuário para home do app
                     Intent intent = new Intent(getBaseContext(), MainIndex.class);

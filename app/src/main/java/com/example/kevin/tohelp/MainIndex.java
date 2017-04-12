@@ -18,8 +18,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainIndex extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Crio o session manager
+    SessionManager sessionManager = new SessionManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class MainIndex extends AppCompatActivity implements NavigationView.OnNav
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Funcionalidade em desenvolvimento.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -44,7 +48,18 @@ public class MainIndex extends AppCompatActivity implements NavigationView.OnNav
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        View headerView = navigationView.getHeaderView(0);
+        //Campos a serem substituidos pelas variáveis salvas nas preferências
+        TextView nome   = (TextView) headerView.findViewById(R.id.username);
+        TextView email  = (TextView) headerView.findViewById(R.id.email);
+
+        //Seto os campos
+        nome.setText(sessionManager.getStringPreferences(MainIndex.this, "nomeUser"));
+        email.setText(sessionManager.getStringPreferences(MainIndex.this, "emailUser"));
+
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -102,9 +117,6 @@ public class MainIndex extends AppCompatActivity implements NavigationView.OnNav
 
         }
         else if (id == R.id.nav_logout) {
-            //Crio o session manager
-            SessionManager sessionManager = new SessionManager();
-
             //Vou setar o usuário como deslogado
             sessionManager.setBooleanPreferences(MainIndex.this, "userLoggedOn", false);
             //Removo o ID do usuário
