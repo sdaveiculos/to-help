@@ -51,6 +51,13 @@ public class Login extends AppCompatActivity {
         btnCadastro = (TextView) findViewById(R.id.btnCadastro);
         fieldLogin  = (EditText) findViewById(R.id.loginUsuario);
         fieldSenha  = (EditText) findViewById(R.id.loginSenha);
+
+        //Ouvindo click do botão de login
+        btnCadastro.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                fazerLogin(view);
+            }
+        });
     }
 
     /**
@@ -75,7 +82,7 @@ public class Login extends AppCompatActivity {
         senha = fieldSenha.getText().toString();
 
         //Enviando os dados de login para o servidor
-        new JSONTask().execute("http://10.145.251.236/tohelp/website/www/action.php?ah=pessoa/fazerLogin");
+        new JSONTask().execute("http://192.168.0.196/tohelp/website/www/action.php?ah=pessoa/fazerLogin");
 
     }
 

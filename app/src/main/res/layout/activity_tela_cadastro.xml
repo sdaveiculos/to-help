@@ -5,7 +5,9 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.kevin.tohelp.TelaCadastro"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -31,7 +33,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textCapWords"
-                            android:hint="Name" />
+                            android:hint="Nome" />
                 </android.support.design.widget.TextInputLayout>
 
                 <!-- Email Label -->

@@ -101,20 +101,11 @@ public class MainIndex extends AppCompatActivity implements NavigationView.OnNav
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            fm.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
-        }
-        else if (id == R.id.nav_gallery) {
-            fm.beginTransaction().replace(R.id.content_frame, new GalleryFragment()).commit();
-        }
-        else if (id == R.id.nav_criar_chamado) {
+        if (id == R.id.nav_criar_chamado) {
             fm.beginTransaction().replace(R.id.content_frame, new CriarChamado()).commit();
         }
         else if (id == R.id.nav_manage) {
             fm.beginTransaction().replace(R.id.content_frame, new CardFragment()).commit();
-        }
-        else if (id == R.id.nav_share) {
-
         }
         else if (id == R.id.nav_logout) {
             //Vou setar o usuário como deslogado
