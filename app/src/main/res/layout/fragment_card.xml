@@ -28,7 +28,7 @@
                     android:layout_height="130dp"
                     android:layout_alignParentTop="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/fire" />
+                    android:src="@drawable/fire_icon" />
 
                 <TextView
                     android:id="@+id/title"
