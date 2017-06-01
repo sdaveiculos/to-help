@@ -97,7 +97,7 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://10.145.251.236/tohelp/website/www/action.php?ah=chamado/criarChamado");
+                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
 
                 }
                 else {
@@ -106,6 +106,13 @@ public class CriarChamado extends Fragment {
                     //Caso getLocation() retorne null, significa que não tenho permissão ainda
                     if (location == null) {
                         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    //Se eu tiver permissão, mas não tiver um provider, devo requisitar que seja habilitado o GPS
+                    if (!locationService.isGPSEnabled && !locationService.isNetworkEnabled) {
+                        Intent gpsOptionsIntent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(gpsOptionsIntent);
                     }
 
                 }
@@ -147,12 +154,9 @@ public class CriarChamado extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage("Carregando...");
+            mProgressDialog.setMessage("Enviado...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
-
-            //TODO não consigo de jeito algum exibir algo que o usuário veja progresso do chamado sendo feito
-            //mas que caralhos posso usar?
         }
 
         @Override

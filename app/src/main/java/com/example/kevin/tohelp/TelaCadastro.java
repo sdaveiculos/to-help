@@ -41,7 +41,7 @@ public class TelaCadastro extends AppCompatActivity {
     private EditText    fieldNome;
     private EditText    fieldEmail;
     private EditText    fieldSenha;
-    private EditText    fieldSexo;
+    //private EditText    fieldSexo;
     private Button      btnLogin;
 
     //Variável de resposta do servidor
@@ -66,6 +66,13 @@ public class TelaCadastro extends AppCompatActivity {
         fieldEmail  = (EditText) findViewById(R.id.cadastroEmail);
         fieldSenha  = (EditText) findViewById(R.id.cadastroSenha);
         btnLogin    = (Button) findViewById(R.id.btn_signup);
+
+        //Ouvindo click do botão de login
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                enviarDados(view);
+            }
+        });
     }
 
     //Método que irá enviar os dados inseridos pelo usuário para o servidor
@@ -73,13 +80,13 @@ public class TelaCadastro extends AppCompatActivity {
 
         nome    = fieldNome.getText().toString();
         email   = fieldEmail.getText().toString();
-        sexo    = fieldSexo.getText().toString();
+        //sexo    = fieldSexo.getText().toString();
         senha   = fieldSenha.getText().toString();
 
         //Toast.makeText(TelaCadastro.this, "Dados cadastrados com sucesso!", Toast.LENGTH_LONG).show();
 
         //Esta task deverá ser rodada quando o botão de cadastro for pressionado
-        new JSONTask().execute("http://192.168.0.196/tohelp/website/www/action.php?ah=pessoa/pessoa_add");
+        new JSONTask().execute("http://192.168.137.222/tohelp/website/www/action.php?ah=pessoa/pessoa_add");
 
     }
 
@@ -116,8 +123,7 @@ public class TelaCadastro extends AppCompatActivity {
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("nome", nome)
                         .appendQueryParameter("email", email)
-                        .appendQueryParameter("senha", senha)
-                        .appendQueryParameter("sexo", sexo);
+                        .appendQueryParameter("senha", senha);
                 String query = builder.build().getEncodedQuery();
 
                 Log.v(TAG, "Builder da Uri criada. Agora vou abrir conexão.");
