@@ -114,11 +114,5 @@ public class MainIndex extends AppCompatActivity implements NavigationView.OnNav
         return true;
     }
 
-    public void kevin () {
-
-        Log.v("oi", "brasil");
-
-    }
-
 }
 

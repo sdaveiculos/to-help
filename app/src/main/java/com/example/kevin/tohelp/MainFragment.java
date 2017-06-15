@@ -23,12 +23,5 @@ public class MainFragment extends Fragment {
 
     }
 
-    public void criarChamado () {
-
-        Log.v("oi", "brasil");
-
-    }
-
-
 }
 
