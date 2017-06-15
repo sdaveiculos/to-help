@@ -39,7 +39,9 @@ public class CriarChamado extends Fragment {
 
     Button btnIncendio;
     Button btnEnchente;
-    Button btnTempestade;
+    Button btnAcidente;
+    Button btnDesmoronamento;
+    Button btnDesmatamento;
 
     LocationService locationService;
     Location location;
@@ -70,9 +72,11 @@ public class CriarChamado extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_criar_chamado, container, false);
 
         //Botões para criar chamado
-        btnIncendio = (Button) rootView.findViewById(R.id.btIncendio);
-        btnEnchente = (Button) rootView.findViewById(R.id.btEnchente);
-        btnTempestade = (Button) rootView.findViewById(R.id.btTempestade);
+        btnIncendio         = (Button) rootView.findViewById(R.id.btIncendio);
+        btnEnchente         = (Button) rootView.findViewById(R.id.btEnchente);
+        btnAcidente         = (Button) rootView.findViewById(R.id.btAcidente);
+        btnDesmatamento     = (Button) rootView.findViewById(R.id.btDesmatamento);
+        btnDesmoronamento   = (Button) rootView.findViewById(R.id.btDesmoronamento);
 
         btnIncendio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +96,190 @@ public class CriarChamado extends Fragment {
                     latitude = locationService.getLatitude();
                     longitude = locationService.getLongitude();
                     tipoChamado = 1;
+
+                    //Agora devo realizar o chamado para o servidor
+                    Log.v("locationService", latitude+" sua latitude");
+                    Log.v("locationService", longitude+" sua longitude");
+
+                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+
+                }
+                else {
+
+                    //Se o gps não estiver ativo, vou verificar se a permissão foi garantida
+                    //Caso getLocation() retorne null, significa que não tenho permissão ainda
+                    if (location == null) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    //Se eu tiver permissão, mas não tiver um provider, devo requisitar que seja habilitado o GPS
+                    if (!locationService.isGPSEnabled && !locationService.isNetworkEnabled) {
+                        Intent gpsOptionsIntent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(gpsOptionsIntent);
+                    }
+
+                }
+
+            }
+        });
+
+        btnEnchente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Agora devo verificar se o GPS tá ativo
+                if (locationService.canGetLocation()) {
+
+                    Log.v("LocationService", "-------------------------------------------------------------------");
+                    Log.v("LocationService", "GPS ativo: "+locationService.isGPSEnabled);
+                    Log.v("LocationService", "Network ativo: "+locationService.isNetworkEnabled);
+                    Log.v("LocationService", "Latitude: "+locationService.latitude);
+                    Log.v("LocationService", "Longitude: "+locationService.longitude);
+                    Log.v("LocationService", "Location: "+locationService.location);
+
+                    //Pego a latitude e longitude
+                    latitude = locationService.getLatitude();
+                    longitude = locationService.getLongitude();
+                    tipoChamado = 2;
+
+                    //Agora devo realizar o chamado para o servidor
+                    Log.v("locationService", latitude+" sua latitude");
+                    Log.v("locationService", longitude+" sua longitude");
+
+                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+
+                }
+                else {
+
+                    //Se o gps não estiver ativo, vou verificar se a permissão foi garantida
+                    //Caso getLocation() retorne null, significa que não tenho permissão ainda
+                    if (location == null) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    //Se eu tiver permissão, mas não tiver um provider, devo requisitar que seja habilitado o GPS
+                    if (!locationService.isGPSEnabled && !locationService.isNetworkEnabled) {
+                        Intent gpsOptionsIntent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(gpsOptionsIntent);
+                    }
+
+                }
+
+            }
+        });
+
+        btnAcidente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Agora devo verificar se o GPS tá ativo
+                if (locationService.canGetLocation()) {
+
+                    Log.v("LocationService", "-------------------------------------------------------------------");
+                    Log.v("LocationService", "GPS ativo: "+locationService.isGPSEnabled);
+                    Log.v("LocationService", "Network ativo: "+locationService.isNetworkEnabled);
+                    Log.v("LocationService", "Latitude: "+locationService.latitude);
+                    Log.v("LocationService", "Longitude: "+locationService.longitude);
+                    Log.v("LocationService", "Location: "+locationService.location);
+
+                    //Pego a latitude e longitude
+                    latitude = locationService.getLatitude();
+                    longitude = locationService.getLongitude();
+                    tipoChamado = 3;
+
+                    //Agora devo realizar o chamado para o servidor
+                    Log.v("locationService", latitude+" sua latitude");
+                    Log.v("locationService", longitude+" sua longitude");
+
+                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+
+                }
+                else {
+
+                    //Se o gps não estiver ativo, vou verificar se a permissão foi garantida
+                    //Caso getLocation() retorne null, significa que não tenho permissão ainda
+                    if (location == null) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    //Se eu tiver permissão, mas não tiver um provider, devo requisitar que seja habilitado o GPS
+                    if (!locationService.isGPSEnabled && !locationService.isNetworkEnabled) {
+                        Intent gpsOptionsIntent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(gpsOptionsIntent);
+                    }
+
+                }
+
+            }
+        });
+
+        btnDesmatamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Agora devo verificar se o GPS tá ativo
+                if (locationService.canGetLocation()) {
+
+                    Log.v("LocationService", "-------------------------------------------------------------------");
+                    Log.v("LocationService", "GPS ativo: "+locationService.isGPSEnabled);
+                    Log.v("LocationService", "Network ativo: "+locationService.isNetworkEnabled);
+                    Log.v("LocationService", "Latitude: "+locationService.latitude);
+                    Log.v("LocationService", "Longitude: "+locationService.longitude);
+                    Log.v("LocationService", "Location: "+locationService.location);
+
+                    //Pego a latitude e longitude
+                    latitude = locationService.getLatitude();
+                    longitude = locationService.getLongitude();
+                    tipoChamado = 4;
+
+                    //Agora devo realizar o chamado para o servidor
+                    Log.v("locationService", latitude+" sua latitude");
+                    Log.v("locationService", longitude+" sua longitude");
+
+                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+
+                }
+                else {
+
+                    //Se o gps não estiver ativo, vou verificar se a permissão foi garantida
+                    //Caso getLocation() retorne null, significa que não tenho permissão ainda
+                    if (location == null) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    //Se eu tiver permissão, mas não tiver um provider, devo requisitar que seja habilitado o GPS
+                    if (!locationService.isGPSEnabled && !locationService.isNetworkEnabled) {
+                        Intent gpsOptionsIntent = new Intent(
+                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(gpsOptionsIntent);
+                    }
+
+                }
+
+            }
+        });
+
+        btnDesmoronamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Agora devo verificar se o GPS tá ativo
+                if (locationService.canGetLocation()) {
+
+                    Log.v("LocationService", "-------------------------------------------------------------------");
+                    Log.v("LocationService", "GPS ativo: "+locationService.isGPSEnabled);
+                    Log.v("LocationService", "Network ativo: "+locationService.isNetworkEnabled);
+                    Log.v("LocationService", "Latitude: "+locationService.latitude);
+                    Log.v("LocationService", "Longitude: "+locationService.longitude);
+                    Log.v("LocationService", "Location: "+locationService.location);
+
+                    //Pego a latitude e longitude
+                    latitude = locationService.getLatitude();
+                    longitude = locationService.getLongitude();
+                    tipoChamado = 5;
 
                     //Agora devo realizar o chamado para o servidor
                     Log.v("locationService", latitude+" sua latitude");
