@@ -48,12 +48,9 @@ public class CriarChamado extends Fragment {
 
     String TAG = "Chamado";
     Integer tipoChamado;
-    Context context = getContext();
 
     double latitude;
     double longitude;
-
-    ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -101,7 +98,11 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("tipo", tipoChamado);
+                    startActivity(intent);
 
                 }
                 else {
@@ -147,8 +148,11 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
-
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("tipo", tipoChamado);
+                    startActivity(intent);
                 }
                 else {
 
@@ -193,7 +197,11 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("tipo", tipoChamado);
+                    startActivity(intent);
 
                 }
                 else {
@@ -239,7 +247,11 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("tipo", tipoChamado);
+                    startActivity(intent);
 
                 }
                 else {
@@ -285,7 +297,11 @@ public class CriarChamado extends Fragment {
                     Log.v("locationService", latitude+" sua latitude");
                     Log.v("locationService", longitude+" sua longitude");
 
-                    new JSONTask().execute("http://192.168.0.106/tohelp/website/www/action.php?ah=chamado/criarChamado");
+                    Intent intent = new Intent(getActivity(), Mapa.class);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
+                    intent.putExtra("tipo", tipoChamado);
+                    startActivity(intent);
 
                 }
                 else {
@@ -328,150 +344,10 @@ public class CriarChamado extends Fragment {
                     //TODO Permissão negada. O que devo fazer?
                     //Talvez exibir um toast ou um alert que não é possível criar um chamado sem a localização
                     Log.v("locationService", "Cancelou a permissão");
-                    //Toast.makeText(context, "Sem a permissão para recuperar a sua localização por GPS o APP não consegue realizar o chamado", Toast.LENGTH_LONG);
+                    Toast.makeText(getContext(), "A permissão para utilizar GPS foi negada. Não será possível recuperar sua posição atual.", Toast.LENGTH_LONG);
                 }
                 return;
             }
-        }
-
-    }
-
-    public class JSONTask extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage("Enviado...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            //Crio a url realizando seus tratamentos
-            URL url = null;
-            try {
-                url = new URL(params[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-
-            Log.v(TAG, "URL criada.");
-
-            try {
-                //Pegando o id do usuário logado
-                SessionManager sessionManager = new SessionManager();
-                String idUser = sessionManager.getStringPreferences(getActivity(), "idUser");
-
-                //Criando builder de Uri com os parâmetros de cadastro
-                Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("idPessoa", idUser)
-                        .appendQueryParameter("latitude", String.valueOf(longitude))
-                        .appendQueryParameter("longitude", String.valueOf(longitude))
-                        .appendQueryParameter("tipo", tipoChamado.toString());
-                String query = builder.build().getEncodedQuery();
-
-                Log.v(TAG, "Builder da Uri criada. Agora vou abrir conexão.");
-
-                //Abrindo a conexão
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-
-                Log.v(TAG, "Conexão estabelecida.");
-
-                // For POST only - START
-                con.setRequestMethod("POST");
-                con.setRequestProperty("User-Agent", "Android");
-                con.setDoOutput(true);
-
-                OutputStream os = con.getOutputStream();
-
-                os.write(query.getBytes());
-                os.flush();
-                os.close();
-                // For POST only - END
-
-                Log.v(TAG, "POST realizado.");
-
-                //Variável de controle da resposta
-                int responseCode = con.getResponseCode();
-
-                Log.v(TAG, "Peguei o response do servidor.");
-
-                //Sucesso na requisição
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Log.v("Deu bom", "Vamos lá");
-
-                    BufferedReader in = new BufferedReader(new InputStreamReader(
-                            con.getInputStream()));
-                    String inputLine;
-                    StringBuffer response = new StringBuffer();
-
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-
-                    //Retorno a string de dados do servidor para ser tratado no onPostExecute
-                    return response.toString();
-
-                } else {
-                    //TODO caso dê um erro, devemos tratar o mesmo informando ao usuário o erro retornado
-                    //O que causa o HttpURLConnection não estar ok?
-                    Log.v("Response", "POST falhou!");
-                }
-
-                //Envia para o servidor
-                con.connect();
-
-                //TODO devo tratar as exceções? caso não, o que o usuário verá quando ocorrer uma dessa?
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            mProgressDialog.dismiss();
-
-            try {
-                //Crio o objeto json a partir da resposta do servidor
-                JSONObject jsonResponse = new JSONObject(result);
-
-                //Caso o login tenha falhado, exibo um alert dialog
-                //FIXME talvez apagar os campos quando o usuário falhar o login ou pelo menos o campo de senha
-                if (!jsonResponse.getBoolean("status")) {
-                    //Criando alert
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle("Chamado");
-                    builder.setMessage(jsonResponse.getString("message"));
-                    builder.setPositiveButton("OK", null);
-                    AlertDialog alerta = builder.create();
-                    alerta.show();
-
-                    Log.v("chamado", jsonResponse.getString("message"));
-                }
-                else {
-                    //Login com sucesso. Exibo um toast avisando o sucesso
-                    Toast.makeText(getActivity(), "Chamado realizado com sucesso. Obrigado por ajudar o Corpo de Bombeiros.", Toast.LENGTH_LONG).show();
-                    Log.v("chamado", "Chamado realizado com sucesso. Obrigado por ajudar o Corpo de Bombeiros.");
-
-                    //Agora devo mandar o usuário para home do app
-                    Intent intent = new Intent(getActivity(), MainIndex.class);
-                    startActivity(intent);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
         }
 
     }

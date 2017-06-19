@@ -36,4 +36,5 @@
         Não retorne ao local de deslizamento sem que a Defesa Cívil tenha feito uma avaliação do terreno.
         E não esqueça que antes, durante e depois do Deslizamento de terra é preciso manter sempre a calma.
     </string>
+    <string name="title_activity_mapa">Map</string>
 </resources>

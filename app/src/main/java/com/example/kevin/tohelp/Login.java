@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity {
     private TextView btnCadastro;
     private EditText fieldLogin;
     private EditText fieldSenha;
+    private TextView recuperarSenha;
 
     //Variáveis com dados a serem enviados para o servidor
     private String TAG      = "Login";
@@ -48,9 +49,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //Instanciando os campos do formulário de login
-        btnCadastro = (TextView) findViewById(R.id.btnCadastro);
-        fieldLogin  = (EditText) findViewById(R.id.loginUsuario);
-        fieldSenha  = (EditText) findViewById(R.id.loginSenha);
+        btnCadastro     = (TextView) findViewById(R.id.btnCadastro);
+        fieldLogin      = (EditText) findViewById(R.id.loginUsuario);
+        fieldSenha      = (EditText) findViewById(R.id.loginSenha);
+        recuperarSenha  = (TextView) findViewById(R.id.recuperar_senha);
 
         //Ouvindo click do botão de login
         btnCadastro.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +60,13 @@ public class Login extends AppCompatActivity {
                 fazerLogin(view);
             }
         });
+
+        recuperarSenha.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View view) {
+                telaRecuperarSenha(view);
+            }
+        });
+
     }
 
     /**
@@ -66,6 +75,15 @@ public class Login extends AppCompatActivity {
      */
     public void telaCadastro (View view) {
         Intent intent = new Intent(this, TelaCadastro.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Método para mudar para a tela de recuperar senha
+     * @param view
+     */
+    public void telaRecuperarSenha (View view) {
+        Intent intent = new Intent(this, RecuperarSenha.class);
         startActivity(intent);
     }
 

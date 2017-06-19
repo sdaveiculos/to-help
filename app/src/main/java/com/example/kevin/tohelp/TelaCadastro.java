@@ -41,7 +41,7 @@ public class TelaCadastro extends AppCompatActivity {
     private EditText    fieldNome;
     private EditText    fieldEmail;
     private EditText    fieldSenha;
-    //private EditText    fieldSexo;
+    private EditText    fieldResposta;
     private Button      btnLogin;
 
     //Variável de resposta do servidor
@@ -51,8 +51,8 @@ public class TelaCadastro extends AppCompatActivity {
     //Variáveis dos dados a serem enviados para o servidor
     String nome     = null;
     String email    = null;
-    String sexo     = null;
     String senha    = null;
+    String resposta = null;
 
     ProgressDialog mProgressDialog;
 
@@ -62,10 +62,11 @@ public class TelaCadastro extends AppCompatActivity {
         setContentView(R.layout.activity_tela_cadastro);
 
         //Instanciando os campos do formulário
-        fieldNome   = (EditText) findViewById(R.id.cadastroNome);
-        fieldEmail  = (EditText) findViewById(R.id.cadastroEmail);
-        fieldSenha  = (EditText) findViewById(R.id.cadastroSenha);
-        btnLogin    = (Button) findViewById(R.id.btn_signup);
+        fieldNome       = (EditText) findViewById(R.id.cadastroNome);
+        fieldEmail      = (EditText) findViewById(R.id.cadastroEmail);
+        fieldSenha      = (EditText) findViewById(R.id.cadastroSenha);
+        btnLogin        = (Button) findViewById(R.id.btn_signup);
+        fieldResposta   = (EditText) findViewById(R.id.cadastroRespostaSecreta);
 
         //Ouvindo click do botão de login
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -78,15 +79,13 @@ public class TelaCadastro extends AppCompatActivity {
     //Método que irá enviar os dados inseridos pelo usuário para o servidor
     public void enviarDados (View v) {
 
-        nome    = fieldNome.getText().toString();
-        email   = fieldEmail.getText().toString();
-        //sexo    = fieldSexo.getText().toString();
-        senha   = fieldSenha.getText().toString();
-
-        //Toast.makeText(TelaCadastro.this, "Dados cadastrados com sucesso!", Toast.LENGTH_LONG).show();
+        nome        = fieldNome.getText().toString();
+        email       = fieldEmail.getText().toString();
+        senha       = fieldSenha.getText().toString();
+        resposta    = fieldResposta.getText().toString();
 
         //Esta task deverá ser rodada quando o botão de cadastro for pressionado
-        new JSONTask().execute("http://192.168.137.222/tohelp/website/www/action.php?ah=pessoa/pessoa_add");
+        new JSONTask().execute("http://192.168.0.196/tohelp/website/www/action.php?ah=pessoa/pessoa_add");
 
     }
 
@@ -123,6 +122,7 @@ public class TelaCadastro extends AppCompatActivity {
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("nome", nome)
                         .appendQueryParameter("email", email)
+                        .appendQueryParameter("respostaSecreta", resposta)
                         .appendQueryParameter("senha", senha);
                 String query = builder.build().getEncodedQuery();
 
